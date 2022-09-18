@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-# cd0354-monolith-to-microservices-project-main
-Udacity project 3
-=======
+# Circle ci badge
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/mrbraimoh/cd0354-monolith-to-microservices-project-main/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/mrbraimoh/cd0354-monolith-to-microservices-project-main/tree/main)
+
 # Udagram Image Filtering Application
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
@@ -88,4 +87,3 @@ Launch the frontend app locally.
     ```
 4. `set_env.sh` is really for your backend application. Frontend applications have a different notion of how to store configurations. Configurations for the application endpoints can be configured inside of the `environments/environment.*ts` files.
 5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
->>>>>>> d65d588 (initial commit)
