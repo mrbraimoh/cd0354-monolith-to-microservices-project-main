@@ -3,11 +3,10 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  POSTGRES_USERNAME: monolithproject3
-  POSTGRES_PASSWORD: Racheal12345
   POSTGRES_HOST: monolithproject3.cfjjsrf5rly9.us-east-1.rds.amazonaws.com
   POSTGRES_DB: monolithproject3
   AWS_BUCKET: monolith-proj3
-  AWS_REGION: us-east-1AWS_PROFILE=default
+  AWS_REGION: us-east-1
+  AWS_PROFILE: default
   JWT_SECRET: testing
-  URL: http://localhost:8100
+  URL: http://localhost:8100`
