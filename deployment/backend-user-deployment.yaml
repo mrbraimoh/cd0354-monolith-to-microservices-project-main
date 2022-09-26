@@ -1,6 +1,42 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: backend-user
+# spec:
+#   selector:
+#     matchLabels:
+#       app: backend-user
+#   replicas: 2
+#   template:
+#     metadata:
+#       labels:
+#         app: backend-user
+#     spec:
+#       containers:
+#       - env:
+#         - name: backend-user
+#         envFrom:
+#         - configMapRef:
+#             name: env-config
+#             optional: true
+#         - secretRef:
+#             name: env-secret
+#             optional: true
+#         image: docker.io/mrbraimoh/udagram-api-user:v4
+#         name: backend-user
+#         ports:
+#         - containerPort: 80
+#         resources:
+#           requests:
+#             cpu: 200m
+#           limits:
+#             cpu: 500m
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: backend-user
   name: backend-user
 spec:
   selector:
@@ -13,24 +49,24 @@ spec:
         app: backend-user
     spec:
       containers:
-      - env:
-        - name: backend-user
+      - name: backend-user
+        image: mrbraimoh/udagram-api-user:v4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 1000m
+            memory: "2092Mi"
+          requests:
+            cpu: 500m
+            memory: "1024Mi"
         envFrom:
         - configMapRef:
             name: env-config
-            optional: true
         - secretRef:
             name: env-secret
-            optional: true
-        image: docker.io/mrbraimoh/udagram-api-user:v5
-        name: backend-user
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            cpu: 200m
-          limits:
-            cpu: 500m
+      restartPolicy: Always
 
 ---
 apiVersion: v1

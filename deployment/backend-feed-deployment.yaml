@@ -27,9 +27,45 @@
 #         - configMapRef:
 #             name: env-config
 
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: backend-feed
+# spec:
+#   selector:
+#     matchLabels:
+#       app: backend-feed
+#   replicas: 2
+#   template:
+#     metadata:
+#       labels:
+#         app: backend-feed
+#     spec:
+#       containers:
+#       - env:
+#         - name: backend-feed
+#         envFrom:
+#         - configMapRef:
+#             name: env-config
+#             optional: true
+#         - secretRef:
+#             name: env-secret
+#             optional: true
+#         image: docker.io/mrbraimoh/udagram-api-feed:v4
+#         name: backend-feed
+#         ports:
+#         - containerPort: 80
+#         resources:
+#           requests:
+#             cpu: 200m
+#           limits:
+#             cpu: 500m
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: backend-feed
   name: backend-feed
 spec:
   selector:
@@ -42,24 +78,24 @@ spec:
         app: backend-feed
     spec:
       containers:
-      - env:
-        - name: backend-feed
+      - name: backend-feed
+        image: mrbraimoh/udagram-api-feed:v4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 500m
+            memory: "1024Mi"
+          limits:
+            cpu: 1000m
+            memory: "2092Mi"
         envFrom:
         - configMapRef:
             name: env-config
-            optional: true
         - secretRef:
             name: env-secret
-            optional: true
-        image: docker.io/mrbraimoh/udagram-api-feed:v5
-        name: backend-feed
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            cpu: 200m
-          limits:
-            cpu: 500m
+      restartPolicy: Always
 
 ---
 apiVersion: v1
