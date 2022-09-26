@@ -5,12 +5,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: backend-user
+      app: backend-user
   replicas: 2
   template:
     metadata:
       labels:
-        run: backend-user
+        app: backend-user
     spec:
       containers:
       - env:
@@ -22,7 +22,7 @@ spec:
         - secretRef:
             name: env-secret
             optional: true
-        image: docker.io/mrbraimoh/udagram-api-user:v4
+        image: docker.io/mrbraimoh/udagram-api-user:v5
         name: backend-user
         ports:
         - containerPort: 80
@@ -45,4 +45,4 @@ spec:
     port: 8080
     targetPort: 8080
   selector:
-    service: backend-user
+    app: backend-user
